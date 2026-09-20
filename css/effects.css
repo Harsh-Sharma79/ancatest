@@ -1,0 +1,526 @@
+/* ANCA PREMIUM VISUAL-EFFECTS LAYER
+   Load after the existing ANCA stylesheets.
+   Effects only: no layout dependencies, JavaScript, or frameworks. */
+
+/* Shared effect tokens */
+:root {
+  --effect-gold-glow: rgba(212, 166, 74, 0.22);
+  --effect-gold-soft: rgba(212, 166, 74, 0.1);
+  --effect-navy-glass: rgba(8, 28, 48, 0.58);
+  --effect-white-glass: rgba(255, 255, 255, 0.08);
+  --effect-border-light: rgba(255, 255, 255, 0.16);
+  --effect-shadow: 0 18px 45px rgba(8, 28, 48, 0.12);
+  --effect-shadow-hover: 0 25px 65px rgba(8, 28, 48, 0.2);
+  --effect-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Decorative section depth */
+.hero-section,
+.hero,
+.courses-hero-section,
+.results-hero-section,
+.events-hero-section,
+.notes-hero-section,
+.contact-hero-section,
+.faq-hero-section,
+.page-hero,
+.final-cta-section,
+.cta-banner,
+.faq-cta-section {
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.courses-hero-section::before,
+.results-hero-section::before,
+.events-hero-section::before,
+.notes-hero-section::before,
+.contact-hero-section::before,
+.faq-hero-section::before,
+.page-hero::before,
+.final-cta-section::before,
+.cta-banner::before,
+.faq-cta-section::before {
+  z-index: -1;
+  background-image:
+    radial-gradient(circle at 72% 28%, rgba(212, 166, 74, 0.1), transparent 22rem),
+    linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+  background-size: 52px 52px;
+  content: '';
+  mask-image: linear-gradient(to bottom, black, transparent 88%);
+  pointer-events: none;
+}
+
+.final-cta-section::after,
+.cta-banner::after,
+.faq-cta-section::after {
+  position: absolute;
+  z-index: -1;
+  width: 30rem;
+  height: 30rem;
+  border: 1px solid rgba(212, 166, 74, 0.18);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3rem rgba(212, 166, 74, 0.035), 0 0 90px rgba(212, 166, 74, 0.08);
+  content: '';
+  pointer-events: none;
+}
+
+.hero-section::after,
+.hero::after {
+  top: 8%;
+  right: -12rem;
+}
+
+.final-cta-section::after,
+.cta-banner::after,
+.faq-cta-section::after {
+  top: -16rem;
+  right: 8%;
+}
+
+/* Glass surfaces */
+.hero-stats > div,
+.achievement-stats .stat-card,
+.statistics-grid .stat-card,
+.nav-enquire,
+.nav-enquiry-trigger,
+.enquiry-float,
+.featured-event-section,
+.featured-resources-section,
+.modal-dialog,
+.enquiry-box {
+  border: 1px solid var(--effect-border-light);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.035));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), var(--effect-shadow);
+  backdrop-filter: blur(16px) saturate(120%);
+}
+
+/* Premium card system */
+.course-card,
+.event-card,
+.rank-card,
+.achievement-card,
+.review-card,
+.testimonial-card,
+.resource-card,
+.feature-card,
+.highlight-card,
+.study-guide-card,
+.contact-card,
+.gallery-item,
+.category-card,
+.subject-card,
+.subject-table,
+.location-details,
+.content-card,
+.featured-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 360ms var(--effect-ease), box-shadow 360ms var(--effect-ease), border-color 360ms ease;
+}
+
+.course-card::before,
+.event-card::before,
+.rank-card::before,
+.achievement-card::before,
+.review-card::before,
+.testimonial-card::before,
+.resource-card::before,
+.feature-card::before,
+.highlight-card::before,
+.study-guide-card::before,
+.contact-card::before,
+.gallery-item::before,
+.category-card::before,
+.subject-card::before,
+.content-card::before,
+.featured-card::before {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 12%;
+  left: 12%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  content: '';
+  opacity: 0;
+  transform: scaleX(0.35);
+  transition: opacity 360ms ease, transform 360ms var(--effect-ease);
+  pointer-events: none;
+}
+
+.event-card:hover,
+.rank-card:hover,
+.achievement-card:hover,
+.review-card:hover,
+.testimonial-card:hover,
+.resource-card:hover,
+.feature-card:hover,
+.highlight-card:hover,
+.study-guide-card:hover,
+.contact-card:hover,
+.gallery-item:hover,
+.category-card:hover,
+.subject-card:hover,
+.content-card:hover,
+.featured-card:hover {
+  border-color: rgba(212, 166, 74, 0.48);
+  box-shadow: var(--effect-shadow-hover);
+}
+
+.course-card:hover::before,
+.event-card:hover::before,
+.rank-card:hover::before,
+.achievement-card:hover::before,
+.review-card:hover::before,
+.testimonial-card:hover::before,
+.resource-card:hover::before,
+.feature-card:hover::before,
+.highlight-card:hover::before,
+.study-guide-card:hover::before,
+.contact-card:hover::before,
+.gallery-item:hover::before,
+.category-card:hover::before,
+.subject-card:hover::before,
+.content-card:hover::before,
+.featured-card:hover::before {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* Image zoom and tonal treatment */
+.course-card img,
+.event-card img,
+.gallery-card img,
+.gallery-item img,
+.resource-card img,
+.review-card img,
+.rank-card img,
+.achievement-card img,
+.topper-poster img,
+.intro-visual img,
+.about-visual img {
+  transition: transform 700ms var(--effect-ease), filter 700ms ease;
+}
+
+.course-card:hover img,
+.event-card:hover img,
+.gallery-card:hover img,
+.gallery-item:hover img,
+.resource-card:hover img,
+.review-card:hover img,
+.rank-card:hover img,
+.achievement-card:hover img,
+.topper-poster:hover img,
+.intro-visual:hover img,
+.about-visual:hover img {
+  filter: contrast(1.04) saturate(1.06);
+  transform: scale(1.045);
+}
+
+.course-image,
+.event-image,
+.gallery-image,
+.resource-thumbnail,
+.student-photo-placeholder,
+.achievement-image,
+.gallery-card,
+.gallery-item {
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.course-image::after,
+.event-image::after,
+.gallery-image::after,
+.resource-thumbnail::after,
+.gallery-card::after,
+.gallery-item::after {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(8, 28, 48, 0.05), rgba(212, 166, 74, 0.14));
+  content: '';
+  opacity: 0;
+  transition: opacity 500ms ease;
+  pointer-events: none;
+}
+
+.course-card:hover .course-image::after,
+.event-card:hover .event-image::after,
+.gallery-card:hover::after,
+.gallery-item:hover::after,
+.resource-card:hover .resource-thumbnail::after {
+  opacity: 1;
+}
+
+/* Image and gallery overlays */
+.gallery-overlay,
+.event-overlay {
+  transition: background 400ms ease, padding 400ms var(--effect-ease);
+}
+
+.gallery-card:hover .gallery-overlay,
+.event-card:hover .event-overlay {
+  padding-bottom: 2rem;
+  background: linear-gradient(to top, rgba(8, 28, 48, 0.96), rgba(14, 42, 71, 0.42), transparent);
+}
+
+/* Animated link underlines */
+.site-footer a,
+.nav-links a,
+.navigation-list a,
+.breadcrumb a,
+.text-link,
+.course-card a,
+.event-card a,
+.resource-card a,
+.category-card,
+.faq-category-navigation a {
+  position: relative;
+}
+
+.nav-links a::after,
+.navigation-list a::after,
+.breadcrumb a::after,
+.site-footer a::after,
+.text-link::after,
+.course-card a::after,
+.event-card a::after,
+.resource-card a::after {
+  position: absolute;
+  right: 0;
+  bottom: -0.15rem;
+  left: 0;
+  height: 1px;
+  background: var(--gold);
+  content: '';
+  opacity: 0.8;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 300ms var(--effect-ease);
+}
+
+.nav-links a:hover::after,
+.navigation-list a:hover::after,
+.breadcrumb a:hover::after,
+.site-footer a:hover::after,
+.text-link:hover::after,
+.course-card a:hover::after,
+.event-card a:hover::after,
+.resource-card a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Button shine and interaction */
+.button,
+.btn,
+.nav-enquire,
+.nav-enquiry-trigger,
+.enquiry-float,
+.location-btn,
+.submit-enquiry {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transition: transform 300ms var(--effect-ease), box-shadow 300ms ease, background-color 300ms ease, border-color 300ms ease, color 300ms ease;
+}
+
+.button::before,
+.btn::before,
+.nav-enquire::before,
+.nav-enquiry-trigger::before,
+.enquiry-float::before,
+.location-btn::before,
+.submit-enquiry::before {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: -80%;
+  width: 48%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.24), transparent);
+  content: '';
+  transform: skewX(-18deg);
+  transition: left 650ms var(--effect-ease);
+}
+
+.button:hover::before,
+.btn:hover::before,
+.nav-enquire:hover::before,
+.nav-enquiry-trigger:hover::before,
+.enquiry-float:hover::before,
+.location-btn:hover::before,
+.submit-enquiry:hover::before {
+  left: 135%;
+}
+
+.button:hover,
+.btn:hover,
+.nav-enquire:hover,
+.nav-enquiry-trigger:hover,
+.enquiry-float:hover,
+.location-btn:hover,
+.submit-enquiry:hover {
+  box-shadow: 0 14px 32px rgba(168, 121, 31, 0.24);
+}
+
+.text-link::after {
+  position: static;
+  display: inline-block;
+  width: auto;
+  height: auto;
+  margin-left: 0.35rem;
+  background: none;
+  content: '→';
+  opacity: 1;
+  transform: translateX(0);
+  transition: transform 300ms var(--effect-ease);
+}
+
+.text-link:hover::after {
+  transform: translateX(4px);
+}
+
+/* Gold focus rings */
+:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px rgba(212, 166, 74, 0.14);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px rgba(212, 166, 74, 0.16), 0 8px 25px rgba(14, 42, 71, 0.06);
+}
+
+/* Scroll reveal states for future JavaScript */
+.reveal,
+.reveal-up,
+.reveal-left,
+.reveal-right,
+.reveal-scale {
+  opacity: 0;
+  transition: opacity 700ms var(--effect-ease), transform 700ms var(--effect-ease);
+}
+
+.reveal,
+.reveal-up {
+  transform: translateY(28px);
+}
+
+.reveal-left {
+  transform: translateX(-28px);
+}
+
+.reveal-right {
+  transform: translateX(28px);
+}
+
+.reveal-scale {
+  transform: scale(0.96);
+}
+
+.reveal.active,
+.reveal-up.active,
+.reveal-left.active,
+.reveal-right.active,
+.reveal-scale.active {
+  opacity: 1;
+  transform: none;
+}
+
+/* Page transition hooks for future JavaScript */
+.page-transition {
+  opacity: 1;
+  transition: opacity 350ms ease, transform 350ms var(--effect-ease);
+}
+
+.page-transition.is-entering {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.page-transition.is-leaving {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+/* Optional custom cursor; disabled by default on touch devices */
+.cursor-dot,
+.cursor-outline {
+  position: fixed;
+  z-index: 3000;
+  display: none;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+.cursor-dot {
+  width: 7px;
+  height: 7px;
+  background: var(--gold);
+  box-shadow: 0 0 16px var(--effect-gold-glow);
+}
+
+.cursor-outline {
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(212, 166, 74, 0.7);
+  transition: width 200ms ease, height 200ms ease, border-color 200ms ease;
+}
+
+@media (pointer: fine) and (min-width: 900px) {
+  .cursor-dot,
+  .cursor-outline {
+    display: block;
+  }
+}
+
+/* Reduced-motion fallback keeps reveal content visible */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal,
+  .reveal-up,
+  .reveal-left,
+  .reveal-right,
+  .reveal-scale,
+  .page-transition,
+  .page-transition.is-entering,
+  .page-transition.is-leaving {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero-section::after,
+  .hero::after,
+  .final-cta-section::after,
+  .cta-banner::after,
+  .faq-cta-section::after {
+    width: 20rem;
+    height: 20rem;
+    right: -10rem;
+  }
+}
+
+@media (pointer: coarse) {
+  .cursor-dot,
+  .cursor-outline {
+    display: none;
+  }
+}
